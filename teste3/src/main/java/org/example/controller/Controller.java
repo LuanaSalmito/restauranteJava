@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +18,32 @@ public class Controller {
     ResponseEntity<List<Prato>> controller(){
         List<Prato> pratos = new ArrayList<>();
 
-        Prato prato1 = new Prato("nome", "descricao", 150, 1, true, "Japonesa");
+        String jdbcUrl = "jdbc:postgresql://localhost:5432/banco";
+        String username = "open_user";
+        String password = "password";
 
-        pratos.add(prato1);
+        try (Connection connection = DriverManager.getConnection(jdbcUrl, username, password)) {
+            String query = "SELECT id, nome, descricao, preco, disponibilidade, categoria FROM dishes";
+            try (Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String nome = resultSet.getString("nome");
+                    String descricao = resultSet.getString("descricao");
+                    int preco = resultSet.getInt(
+                            "preco");
+                    String categoria = resultSet.getString("categoria");
+                    boolean disponibilidade = resultSet.getBoolean(
+                            "disponibilidade");
+
+                    Prato novoprato = new Prato(nome, descricao, preco, id, disponibilidade, categoria);
+                    pratos.add(novoprato);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception
+        }
 
         return ResponseEntity.ok(pratos);
 

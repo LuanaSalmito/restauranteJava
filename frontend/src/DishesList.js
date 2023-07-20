@@ -6,7 +6,7 @@ const DishesList = () => {
   useEffect(() => {
     const fetchDishes = async () => {
       try {
-        const response = await fetch('http://localhost:8080/dishesList'); 
+        const response = await fetch('http://localhost:5000/dishesList'); 
 
         if (response.ok) {
           const data = await response.json();

@@ -1,0 +1,55 @@
+@font-face{
+    font-family: 'japan';
+    src: url('./CatCafe.ttf') format('truetype');
+}
+
+p, h1, h2, h3, h4, h5{
+    margin: 0;
+    padding: 0;
+}
+
+.App{
+    background-color: #461959;
+    color: #ffffff;
+    min-height: 100vh;
+    font-family: 'japan';
+}
+
+.menu{
+    padding: 30px;
+    max-width: 900px;
+    margin: auto;
+    min-height: 60px;
+    display: flex;
+    
+    align-items: center;
+}
+
+.dishes__list{
+    max-width: 900px;
+    margin: auto;
+    padding: 15px 30px;
+}
+
+.dishes__container{
+    height: auto;
+    color: #461959;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.dish{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    font-size: 18px;
+    background-color: #AED8CC;
+    border-radius: 15px;
+    padding: 15px;
+    
+}
+
+
