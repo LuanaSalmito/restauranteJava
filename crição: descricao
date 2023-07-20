@@ -1,5 +1,0 @@
- id |      nome       |            descricao             | preco | disponibilidade | categoria 
-----+-----------------+----------------------------------+-------+-----------------+-----------
-  1 | Sushi de Salmão | Delicioso sushi de salmão fresco | 25.99 | t               | Japonesa
-(1 row)
-
